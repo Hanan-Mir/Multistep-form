@@ -1,0 +1,117 @@
+:root{
+    --primary-marine-blue:hsl(213,96%,18%);
+    --primary-purplish-blue:hsl(243,100%,62%);
+    --primary-pastel-blue:hsl(228,100%,84%);
+    --primary-light-blue:hsl(206,94%,87%);
+    --primary-strawberry-red:hsl(354,84%,57%);
+    --neutral-cool-grey:hsl(31,11%,63%);
+    --neutral-light-grey:hsl(229,24%,87%);
+    --neutral-mangolia:hsl(217,100%,97%);
+    --neutral-alabaster:hsl(231,100%,99%);
+    --neutral-white:hsl(0,0%,100%);
+    --p-size:16px;
+    --font-family:"ubuntu"
+}
+
+
+
+
+/* main styles */
+
+body{
+    width: 100%;
+    height: 100vh;
+    margin: 0px;
+    padding: 0px;
+}
+.main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--neutral-mangolia);
+    
+}
+form{
+    width: 54%;
+    height: 68%;
+    background-color:var(--neutral-white);
+    font-family: var(--font-family);
+    position: relative;
+    border-radius: 2%;
+}
+.image-container{
+    position: absolute;
+    top:2% ;
+    left: 1%;
+}
+.steps-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  
+}
+.step{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 20%;
+    
+}
+.step-count{
+    border: 1px solid var(--neutral-white);
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 50%;
+    width: 5%;
+    color: var(--neutral-white);
+    font-weight: bold;
+}
+.step-number{
+    color: var(--neutral-cool-grey);
+    margin: 0px;
+}
+.step-name{
+    color: var(--neutral-white);
+    margin:4px 0px 0px 0px;
+    font-weight: 700;
+    font-size: 16px;
+}
+.step-info{
+    margin-left: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+/* active step */
+.active{
+    background-color: var(--neutral-white);
+    color: black;
+}
+/* step position */
+.step1-position{
+    position: absolute;
+    top: 6%;
+    left: 4%;
+}
+.step2-position{
+    position: absolute;
+    top: 18%;
+    left: 4%;
+}
+.step3-position{
+    position: absolute;
+    top: 30%;
+    left: 4%;
+}
+.step4-position{
+    position: absolute;
+    top: 42%;
+    left: 4%;
+}

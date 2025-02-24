@@ -1,0 +1,122 @@
+:root {
+  --primary-marine-blue: #02295a;
+  --primary-purplish-blue: #473dff;
+  --primary-pastel-blue: #adbeff;
+  --primary-light-blue: #bfe2fd;
+  --primary-strawberry-red: #ed3548;
+  --neutral-cool-grey: #aba196;
+  --neutral-light-grey: #d6d9e6;
+  --neutral-mangolia: #f0f6ff;
+  --neutral-alabaster: #fafbff;
+  --neutral-white: #fff;
+  --p-size: 16px;
+  --font-family: "ubuntu";
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  background-color: var(--neutral-mangolia);
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+form {
+  background-color: var(--neutral-white);
+  width: 54%;
+  height: 68%;
+  font-family: var(--font-family);
+  border-radius: 2%;
+  position: relative;
+}
+
+.image-container {
+  position: absolute;
+  top: 2%;
+  left: 1%;
+}
+
+.steps-container {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+
+.step {
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 20%;
+  display: flex;
+}
+
+.step-count {
+  border: 1px solid var(--neutral-white);
+  text-align: center;
+  width: 5%;
+  color: var(--neutral-white);
+  border-radius: 50%;
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+.step-number {
+  color: var(--neutral-cool-grey);
+  margin: 0;
+}
+
+.step-name {
+  color: var(--neutral-white);
+  margin: 4px 0 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.step-info {
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 12px;
+  display: flex;
+}
+
+.active {
+  background-color: var(--neutral-white);
+  color: #000;
+}
+
+.step1-position {
+  position: absolute;
+  top: 6%;
+  left: 4%;
+}
+
+.step2-position {
+  position: absolute;
+  top: 18%;
+  left: 4%;
+}
+
+.step3-position {
+  position: absolute;
+  top: 30%;
+  left: 4%;
+}
+
+.step4-position {
+  position: absolute;
+  top: 42%;
+  left: 4%;
+}
+/*# sourceMappingURL=index.88767052.css.map */
