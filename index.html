@@ -11,7 +11,7 @@
 </head>
 <body>
   <section class="main">
-<form action="">
+<form action="/">
   <!-- left side of the form -->
 <div class="left">
 <div class="image-container">
@@ -19,7 +19,7 @@
 </div>
 <div class="steps-container">
 <div class="step step1-position">
-  <p class="step-count ">1</p>
+  <p class="step-count active">1</p>
   <div class="step-info">
     <p class="step-number">STEP 1</p>
     <h3 class="step-name">YOUR INFO</h3>
@@ -33,7 +33,7 @@
   </div>
 </div>
 <div class="step step3-position">
-  <p class="step-count active">3</p>
+  <p class="step-count">3</p>
   <div class="step-info">
     <p class="step-number">STEP 3</p>
     <h3 class="step-name">ADD-ONS</h3>
@@ -50,10 +50,164 @@
 </div>
 <!-- right side of the form -->
 <div class="right">
-
+<section class="your-info hide">
+<div class="heading">
+  <h1>Personal info</h1>
+  <p>Please provide your name,email address, and phone number.</p>
+</div>
+<div class="name input-style ">
+  <label for="username">Name</label>
+  <input type="text" name="" id="username" placeholder="e.g Mir Hanan" class="textbox-style" required>
+</div>
+<div class="email input-style ">
+  <label for="email">Email Address</label>
+<input type="email" name="" id="email" class="textbox-style" placeholder="hanan@gmail.com" required>
+</div>
+<div class="phone-number input-style ">
+  <label for="ph-no">Phone Number</label>
+<input type="text" name="" id="ph-no" class="textbox-style" placeholder="+91 7780964843" required>
+</div>
+</section>
+<section class="select-plan">
+  <div class="heading">
+    <h1>Select your plan</h1>
+    <p>You have the option of monthly or yearly billing</p>
+  </div>
+  <div class="card-container">
+<div class="card">
+  <div class="card-icon">
+    <img src="assets/images/icon-arcade.svg" alt="">
+  </div>
+  <div class="card-info">
+    <h3>Arcade</h3>
+    <p>$9/mo</p>
+    <p class="free-duration">2 months free</p>
+  </div>
+  </div>
+  <div class="card">
+    <div class="card-icon">
+      <img src="assets/images/icon-advanced.svg" alt="">
+    </div>
+    <div class="card-info">
+      <h3>Advanced</h3>
+      <p>$12/mo</p>
+      <p class="free-duration">2 months free</p>
+    </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <img src="assets/images/icon-pro.svg" alt="">
+      </div>
+      <div class="card-info">
+        <h3>Pro</h3>
+        <p>$15/mo</p>
+        <p class="free-duration">2 months free</p>
+      </div>
+      </div>
+  </div>
+<div class="toggle-section">
+  <label for="month">Monthly</label>
+  <div class="radio-btn">
+    <input type="checkbox" name="monthly" id="month" class="option">
+    <input type="radio" name="monthly" id="year" class="option">
+  </div>
+  <label for="year">Yearly</label>
+</div>
+</section>
+<section class="add-on hide">
+  <div class="heading">
+    <h1>Pick add-ons</h1>
+    <p>Add-ons help enhance your gaming experience.</p>
+  </div>
+<div class="addon-container">
+<div class="addon-description">
+  <input type="checkbox" name="" id="">
+  <div class="addon-type">
+    <h3>Online service</h3>
+    <p>Access to multiplayer games</p>
+  </div>
+  <div class="cost"><p>+$1/mo</p>
+  <p class="hide">+$10/yr</p>
+  </div>
+</div>
+<div class="addon-description">
+  <input type="checkbox" name="" id="">
+  <div class="addon-type type2">
+   <h3>Larger storage</h3>
+    <p>Extra 1TB of cloud save</p>
+  </div>
+  <div class="cost"><p>+$2/mo</p>
+    <p class="hide">+$20/yr</p>
+  </div>
+</div>
+<div class="addon-description">
+  <input type="checkbox" name="" id="">
+  <div class="addon-type">
+    <h3>Customizable profile</h3>
+    <p>Custom theme on your profile</p>
+  </div>
+  <div class="cost"><p>+$2/mo</p>
+    <p class="hide">+$20/yr</p>
+  </div>
 </div>
 
+</div>
+</section>
+<section class="finishing-up hide">
+  <div class="heading">
+    <h1>Finishing up</h1>
+    <p>Double-check everything looks OK before confirming.</p>
+  </div>
+  <div class="summary-container">
+<div class="selected-plan">
+  <div class="plan">
+  <p class="plan-name">Arcade(Monthly)</p>
+  <a href="#" class="change">Change</a>
+</div>
+<p class="price pmonthly">$9/mo</p>
+<p class="price pyearly hide">$90/yr</p>
+</div>
+<div class="break"></div>
+<div class="service-type">
+  <p class="service-name">Online-service</p>
+  <p class="service-cost smonthly">+$2/mo</p>
+  <p class="service-cost syearly hide">+$10/mo</p>
+  
+</div>
+<div class="storage-type">
+  <p class="storage-name">Larger storage</p>
+  <p class="storage-cost smonthly">+$2/mo</p>
+  <p class="storage-cost syearly hide">+$20/yr</p>
+</div>
+  </div>
+  <div class="total-month">
+    <p class="totalM">Total(per month)</p>
+    <p class="totalM-cost tmonthly ">+$12/mo</p>
+    <p class="totalM-cost tyearly hide">+$120/yr</p>
+  </div>
 
+</section>
+
+<section class="sucess-container hide">
+  <div class="sucess">
+<img src="assets/images/icon-thank-you.svg" alt="">
+<h1>Thank you!</h1>
+<p class="sucess-msg">Thanks for confirming your subscription!We hope you have fun using our platform.If you ever need support,please feel free to email us at support@hanan.com.</p>
+</div>
+
+</section>
+
+
+</div>
+<div class="back-btn">
+  <button>Go Back</button>
+</div>
+<div class="button hide">
+  <button>Next Step</button>
+</div>
+<div class="button">
+  <button class="btn-confirm">Confirm</button>
+</div>
 
 
 
