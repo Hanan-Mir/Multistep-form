@@ -8,10 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+<script src="/index.7604f81c.js" defer=""></script>
 </head>
 <body>
   <section class="main">
-<form action="/">
+<form action="/" id="multistepForm">
   <!-- left side of the form -->
 <div class="left">
 <div class="image-container">
@@ -26,7 +27,7 @@
   </div>
 </div>
 <div class="step step2-position">
-  <p class="step-count ">2</p>
+  <p class="step-count plan-section ">2</p>
   <div class="step-info">
     <p class="step-number">STEP 2</p>
     <h3 class="step-name">SELECT PLAN</h3>
@@ -49,8 +50,8 @@
 </div>
 </div>
 <!-- right side of the form -->
-<div class="right">
-<section class="your-info hide">
+<div class="right" id="container">
+<section class="your-info">
 <div class="heading">
   <h1>Personal info</h1>
   <p>Please provide your name,email address, and phone number.</p>
@@ -58,17 +59,20 @@
 <div class="name input-style ">
   <label for="username">Name</label>
   <input type="text" name="" id="username" placeholder="e.g Mir Hanan" class="textbox-style" required="">
+<div class="messageUserName message hide">This feild is required</div>
 </div>
 <div class="email input-style ">
   <label for="email">Email Address</label>
 <input type="email" name="" id="email" class="textbox-style" placeholder="hanan@gmail.com" required="">
+<div class="messageemail message hide">This feild is required</div>
 </div>
 <div class="phone-number input-style ">
   <label for="ph-no">Phone Number</label>
-<input type="text" name="" id="ph-no" class="textbox-style" placeholder="+91 7780964843" required="">
+<input type="number" name="" id="ph-no" class="textbox-style" placeholder="+91 7780964843" required="">
+<div class="messagePhNumber message hide">This feild is required</div>
 </div>
 </section>
-<section class="select-plan">
+<!-- <section class="select-plan hide">
   <div class="heading">
     <h1>Select your plan</h1>
     <p>You have the option of monthly or yearly billing</p>
@@ -76,7 +80,7 @@
   <div class="card-container">
 <div class="card">
   <div class="card-icon">
-    <img src="/icon-arcade.711d358c.svg" alt="">
+    <img src="assets/images/icon-arcade.svg" alt="">
   </div>
   <div class="card-info">
     <h3>Arcade</h3>
@@ -86,7 +90,7 @@
   </div>
   <div class="card">
     <div class="card-icon">
-      <img src="/icon-advanced.686c0ce0.svg" alt="">
+      <img src="assets/images/icon-advanced.svg" alt="">
     </div>
     <div class="card-info">
       <h3>Advanced</h3>
@@ -96,7 +100,7 @@
     </div>
     <div class="card">
       <div class="card-icon">
-        <img src="/icon-pro.f7ae9eb4.svg" alt="">
+        <img src="assets/images/icon-pro.svg" alt="">
       </div>
       <div class="card-info">
         <h3>Pro</h3>
@@ -108,8 +112,9 @@
 <div class="toggle-section">
   <label for="month">Monthly</label>
   <div class="radio-btn">
-    <input type="checkbox" name="monthly" id="month" class="option">
+    <input type="radio" name="monthly" id="month" class="option">
     <input type="radio" name="monthly" id="year" class="option">
+    <div class="slider"></div>
   </div>
   <label for="year">Yearly</label>
 </div>
@@ -190,23 +195,22 @@
 
 <section class="sucess-container hide">
   <div class="sucess">
-<img src="/icon-thank-you.c22376b0.svg" alt="">
+<img src="assets/images/icon-thank-you.svg" alt="">
 <h1>Thank you!</h1>
 <p class="sucess-msg">Thanks for confirming your subscription!We hope you have fun using our platform.If you ever need support,please feel free to email us at support@hanan.com.</p>
 </div>
 
-</section>
-
-
-</div>
-<div class="back-btn">
+</section> -->
+<!-- <div class="back-btn">
   <button>Go Back</button>
-</div>
-<div class="button hide">
-  <button>Next Step</button>
-</div>
+</div> -->
 <div class="button">
+  <button class="next">Next Step</button>
+</div>
+<!-- <div class="button">
   <button class="btn-confirm">Confirm</button>
+</div> -->
+
 </div>
 
 
@@ -221,5 +225,5 @@
 
   </section>
   
-<script src="/multi-step-form-main.125fffe8.js"></script></body>
+</body>
 </html>

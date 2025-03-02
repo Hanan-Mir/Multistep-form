@@ -10,7 +10,7 @@
   --neutral-alabaster: #fafbff;
   --neutral-white: #fff;
   --p-size: 16px;
-  --font-family: "ubuntu";
+  --font-family: "ubuntu sans-serif";
 }
 
 body {
@@ -203,6 +203,7 @@ form {
   width: 25%;
   padding-top: 4%;
   padding-left: 5%;
+  transition: all .2s;
 }
 
 .card-info {
@@ -256,27 +257,28 @@ form {
 }
 
 .option {
-  opacity: 1;
+  opacity: 0;
 }
 
 .toggle-section {
   position: relative;
 }
 
-.toggle-section:after {
+.slider:before {
   content: "";
   background-color: var(--neutral-white);
   border-radius: 50%;
   width: 1rem;
   height: 1rem;
+  transition: transform .3s;
   position: absolute;
   top: 32%;
   bottom: 0;
-  left: 47%;
+  left: 46%;
 }
 
-.option:checked + label {
-  color: #00f;
+#year:checked ~ .slider:before {
+  transform: translateX(2rem);
 }
 
 .add-on h1 {
@@ -423,5 +425,46 @@ form {
   margin-left: 10%;
   font-size: 1.2rem;
   line-height: 1.5;
+}
+
+.textbox-style:hover {
+  cursor: pointer;
+  border-color: var(--primary-purplish-blue);
+}
+
+.card:hover {
+  cursor: pointer;
+  border-color: var(--primary-purplish-blue);
+  transform: scale(1.1);
+}
+
+.addon-description:hover {
+  cursor: pointer;
+  border-color: var(--primary-purplish-blue);
+}
+
+.change:hover {
+  cursor: pointer;
+  color: var(--primary-purplish-blue);
+}
+
+.active-card {
+  border-color: var(--primary-purplish-blue);
+  background-color: var(--neutral-light-grey);
+}
+
+.active-addon {
+  border-color: var(--primary-purplish-blue);
+  background-color: var(--neutral-alabaster);
+}
+
+.message {
+  width: 100%;
+  color: var(--primary-strawberry-red);
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-weight: 600;
+  position: relative;
+  left: 68%;
 }
 /*# sourceMappingURL=index.88767052.css.map */
