@@ -20,14 +20,14 @@ _generateMarkup(){
     <p>You have the option of monthly or yearly billing</p>
   </div>
   <div class="card-container">
-<div class="card arcade-card">
-  <div class="card-icon">
+<div class="card">
+  <div class="card-icons">
     <img src="${arcade}" alt="">
   </div>
   <div class="card-info">
     <h3>Arcade</h3>
-    <p>$9/mo</p>
-    <p class="free-duration">2 months free</p>
+    <p class="arcade-cost">$9/mo</p>
+    <p class="free-duration hide">2 months free</p>
   </div>
   </div>
   <div class="card advanced-card">
@@ -36,8 +36,8 @@ _generateMarkup(){
     </div>
     <div class="card-info">
       <h3>Advanced</h3>
-      <p>$12/mo</p>
-      <p class="free-duration">2 months free</p>
+      <p class="advanced-cost">$12/mo</p>
+      <p class="free-duration hide">2 months free</p>
     </div>
     </div>
     <div class="card pro-card">
@@ -46,16 +46,16 @@ _generateMarkup(){
       </div>
       <div class="card-info">
         <h3>Pro</h3>
-        <p>$15/mo</p>
-        <p class="free-duration">2 months free</p>
+        <p class="pro-cost">$15/mo</p>
+        <p class="free-duration hide">2 months free</p>
       </div>
       </div>
   </div>
 <div class="toggle-section">
   <label for="month">Monthly</label>
   <div class="radio-btn">
-    <input type="radio" name="monthly" id="month" class="option">
-    <input type="radio" name="monthly" id="year" class="option">
+    <input type="radio" name="option" value="month"  id="month" class="option">
+    <input type="radio" name="option" value="year" id="year"  class="option">
     <div class="slider"></div>
   </div>
   <label for="year">Yearly</label>

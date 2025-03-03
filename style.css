@@ -186,11 +186,12 @@ form{
 }
 .card{
     border: 1px solid var(--neutral-cool-grey);
-    width: 25%;
     padding-left: 5%;
     padding-top: 4%;
     border-radius: 10px;
     transition: all 0.2s;
+    box-sizing: border-box;
+    width: 30%;
 }
 .card-info{
     margin-top: 40px;
@@ -255,6 +256,9 @@ form{
 }
 #year:checked ~ .slider::before{
     transform: translateX(2rem);
+}
+#month:checked ~ .slider::before{
+    transform: translateX(0rem);
 }
 /* styling section add-ons */
 .add-on h1{

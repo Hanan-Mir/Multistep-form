@@ -603,6 +603,8 @@ var _veiw = require("./Veiws/veiw");
 var _veiwDefault = parcelHelpers.interopDefault(_veiw);
 var _selectPlanVeiw = require("./Veiws/selectPlanVeiw");
 var _selectPlanVeiwDefault = parcelHelpers.interopDefault(_selectPlanVeiw);
+var _addOnVeiw = require("./Veiws/addOnVeiw");
+var _addOnVeiwDefault = parcelHelpers.interopDefault(_addOnVeiw);
 const loadSelectPlan = function(parentEl) {
     if (checkDataPresent((0, _infoVeiwDefault.default)._username) && checkMail((0, _infoVeiwDefault.default)._email) && checkDataPresent((0, _infoVeiwDefault.default)._phNumber)) {
         (0, _infoVeiwDefault.default)._render((0, _infoVeiwDefault.default)._generateMarkup(), parentEl);
@@ -627,11 +629,13 @@ const checkMail = function(element) {
 };
 let init = function() {
     (0, _infoVeiwDefault.default).addHandlerRender(loadSelectPlan);
-    (0, _selectPlanVeiwDefault.default).addHandlerActiveCard();
+    (0, _selectPlanVeiwDefault.default).addHandlerActivateCard();
+    (0, _selectPlanVeiwDefault.default).addHandlerToggle();
+    (0, _addOnVeiwDefault.default).addHandlerRenderAddOn();
 };
 init();
 
-},{"./Veiws/infoVeiw":"gp6od","./Veiws/veiw":"fjehN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./Veiws/selectPlanVeiw":"enGlT"}],"gp6od":[function(require,module,exports,__globalThis) {
+},{"./Veiws/infoVeiw":"gp6od","./Veiws/veiw":"fjehN","./Veiws/selectPlanVeiw":"enGlT","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./Veiws/addOnVeiw":"2H5aB"}],"gp6od":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _veiw = require("./veiw");
@@ -660,14 +664,14 @@ class Infoview extends (0, _veiwDefault.default) {
     <p>You have the option of monthly or yearly billing</p>
   </div>
   <div class="card-container">
-<div class="card arcade-card">
-  <div class="card-icon">
+<div class="card">
+  <div class="card-icons">
     <img src="${0, _iconArcadeSvgDefault.default}" alt="">
   </div>
   <div class="card-info">
     <h3>Arcade</h3>
-    <p>$9/mo</p>
-    <p class="free-duration">2 months free</p>
+    <p class="arcade-cost">$9/mo</p>
+    <p class="free-duration hide">2 months free</p>
   </div>
   </div>
   <div class="card advanced-card">
@@ -676,8 +680,8 @@ class Infoview extends (0, _veiwDefault.default) {
     </div>
     <div class="card-info">
       <h3>Advanced</h3>
-      <p>$12/mo</p>
-      <p class="free-duration">2 months free</p>
+      <p class="advanced-cost">$12/mo</p>
+      <p class="free-duration hide">2 months free</p>
     </div>
     </div>
     <div class="card pro-card">
@@ -686,16 +690,16 @@ class Infoview extends (0, _veiwDefault.default) {
       </div>
       <div class="card-info">
         <h3>Pro</h3>
-        <p>$15/mo</p>
-        <p class="free-duration">2 months free</p>
+        <p class="pro-cost">$15/mo</p>
+        <p class="free-duration hide">2 months free</p>
       </div>
       </div>
   </div>
 <div class="toggle-section">
   <label for="month">Monthly</label>
   <div class="radio-btn">
-    <input type="radio" name="monthly" id="month" class="option">
-    <input type="radio" name="monthly" id="year" class="option">
+    <input type="radio" name="option" value="month"  id="month" class="option">
+    <input type="radio" name="option" value="year" id="year"  class="option">
     <div class="slider"></div>
   </div>
   <label for="year">Yearly</label>
@@ -748,7 +752,7 @@ class Infoview extends (0, _veiwDefault.default) {
 }
 exports.default = new Infoview();
 
-},{"./veiw":"fjehN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","url:../assets/images/icon-arcade.svg":"5k8VQ","url:../assets/images/icon-advanced.svg":"9gsvG","url:../assets/images/icon-pro.svg":"ei7Nk"}],"fjehN":[function(require,module,exports,__globalThis) {
+},{"./veiw":"fjehN","url:../assets/images/icon-arcade.svg":"5k8VQ","url:../assets/images/icon-advanced.svg":"9gsvG","url:../assets/images/icon-pro.svg":"ei7Nk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fjehN":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 class View {
@@ -855,23 +859,121 @@ parcelHelpers.defineInteropFlag(exports);
 var _veiw = require("./veiw");
 var _veiwDefault = parcelHelpers.interopDefault(_veiw);
 class SelectPlanVeiw extends (0, _veiwDefault.default) {
-    _arcadeCard = document.querySelector('.arcade-card');
-    _advancedCard = document.querySelector('.advanced-card');
-    _proCard = document.querySelector('.pro-card');
-    _allCards = document.querySelectorAll('.card');
-    addHandlerActiveCard() {
-        console.log(this._allCards);
-        this._allCards.forEach((card)=>{
-            console.log(card);
-            card.addEventListener('DOMContentLoaded', function(e) {
-                e.preventDefault();
-                alert('card clicked');
-            });
+    _parentEl = document.querySelector('.right');
+    _optionSelected;
+    //using event delegation
+    addHandlerActivateCard() {
+        this._parentEl.addEventListener('click', function(e) {
+            const clickedCard = e.target.closest('.card');
+            //To activate the current card
+            if (e.target.classList.contains('card')) {
+                const allCards = document.querySelectorAll('.card');
+                allCards.forEach((card)=>{
+                    card.classList.remove('active-card');
+                });
+                if (!clickedCard) return;
+                console.log(clickedCard);
+                clickedCard.classList.add('active-card');
+            }
+        });
+    }
+    //To move the toggle section and change the data on the card accordingly
+    addHandlerToggle() {
+        this._parentEl.addEventListener('click', function(e) {
+            if (e.target.classList.contains('option')) {
+                let selectedOption = e.target.value;
+                let arcadeCost = document.querySelector('.arcade-cost');
+                let advancedCost = document.querySelector('.advanced-cost');
+                let proCost = document.querySelector('.pro-cost');
+                let description = document.querySelectorAll('.free-duration');
+                if (selectedOption == 'month') {
+                    this._optionSelected = "month";
+                    arcadeCost.innerHTML = '';
+                    arcadeCost.innerHTML = "$9/month";
+                    advancedCost.innerHTML = "";
+                    advancedCost.innerHTML = "$12/mo";
+                    proCost.innerHTML = "";
+                    proCost.innerHTML = "$15/mo";
+                    description.forEach((des)=>{
+                        des.classList.add('hide');
+                    });
+                }
+                if (selectedOption == 'year') {
+                    this._optionSelected = "year";
+                    arcadeCost.innerHTML = '';
+                    arcadeCost.innerHTML = "$90/yr";
+                    advancedCost.innerHTML = "";
+                    advancedCost.innerHTML = "$120/yr";
+                    proCost.innerHTML = "";
+                    proCost.innerHTML = "$150/yr";
+                    description.forEach((des)=>{
+                        des.classList.remove('hide');
+                    });
+                }
+            }
         });
     }
 }
 exports.default = new SelectPlanVeiw();
 
-},{"./veiw":"fjehN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["9GzPh","3rStQ"], "3rStQ", "parcelRequire94c2")
+},{"./veiw":"fjehN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2H5aB":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _veiw = require("./veiw");
+var _veiwDefault = parcelHelpers.interopDefault(_veiw);
+var _selectPlanVeiw = require("./selectPlanVeiw");
+var _selectPlanVeiwDefault = parcelHelpers.interopDefault(_selectPlanVeiw);
+class AddOnVeiw extends (0, _veiwDefault.default) {
+    _generateMarkup() {
+        if ((0, _selectPlanVeiwDefault.default)._optionSelected == 'month') return `<section class="add-on hide">
+  <div class="heading">
+    <h1>Pick add-ons</h1>
+    <p>Add-ons help enhance your gaming experience.</p>
+  </div>
+<div class="addon-container">
+<div class="addon-description">
+  <input type="checkbox" name="" id="">
+  <div class="addon-type">
+    <h3>Online service</h3>
+    <p>Access to multiplayer games</p>
+  </div>
+  <div class="cost"><p>+$1/mo</p>
+  <p class="hide">+$10/yr</p>
+  </div>
+</div>
+<div class="addon-description">
+  <input type="checkbox" name="" id="">
+  <div class="addon-type type2">
+   <h3>Larger storage</h3>
+    <p>Extra 1TB of cloud save</p>
+  </div>
+  <div class="cost"><p>+$2/mo</p>
+    <p class="hide">+$20/yr</p>
+  </div>
+</div>
+<div class="addon-description">
+  <input type="checkbox" name="" id="">
+  <div class="addon-type">
+    <h3>Customizable profile</h3>
+    <p>Custom theme on your profile</p>
+  </div>
+  <div class="cost"><p>+$2/mo</p>
+    <p class="hide">+$20/yr</p>
+  </div>
+</div>
+
+</div>
+</section> `;
+    }
+    addHandlerRenderAddOn() {
+        (0, _selectPlanVeiwDefault.default)._parentEl.addEventListener('click', (e)=>{
+            e.preventDefault();
+            if (e.target.classList.contains('select-plan')) alert("move to other section");
+        });
+    }
+}
+exports.default = new AddOnVeiw();
+
+},{"./veiw":"fjehN","./selectPlanVeiw":"enGlT","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["9GzPh","3rStQ"], "3rStQ", "parcelRequire94c2")
 
 //# sourceMappingURL=index.7604f81c.js.map

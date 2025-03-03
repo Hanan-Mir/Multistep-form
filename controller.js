@@ -1,6 +1,7 @@
 import infoVeiw from "./Veiws/infoVeiw";
 import View from "./Veiws/veiw";
 import selectPlanVeiw from "./Veiws/selectPlanVeiw";
+import addOnVeiw from "./Veiws/addOnVeiw";
 const loadSelectPlan=function(parentEl){
    
     if(checkDataPresent(infoVeiw._username) && checkMail(infoVeiw._email) && checkDataPresent(infoVeiw._phNumber)){
@@ -37,6 +38,8 @@ const checkMail=function(element){
 
 let init=function(){
     infoVeiw.addHandlerRender(loadSelectPlan);
-    selectPlanVeiw.addHandlerActiveCard();
+    selectPlanVeiw.addHandlerActivateCard();
+    selectPlanVeiw.addHandlerToggle();
+    addOnVeiw.addHandlerRenderAddOn();
 }
 init();
