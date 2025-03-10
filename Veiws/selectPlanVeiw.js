@@ -2,10 +2,15 @@ import View from "./veiw";
 class SelectPlanVeiw extends View{
 
 _parentEl=document.querySelector('.right');
-_optionSelected;
+optionSelected='month';
+_planSelected;
+//function for option selected
+optionSelectedfun(option){
+this.optionSelected=option;
+}
 //using event delegation
 addHandlerActivateCard(){
-this._parentEl.addEventListener('click',function(e){
+this._parentEl.addEventListener('click',(e)=>{
     const clickedCard=e.target.closest('.card');
 //To activate the current card
     if(e.target.classList.contains('card')){
@@ -14,15 +19,16 @@ this._parentEl.addEventListener('click',function(e){
             card.classList.remove('active-card');
         })
 if(!clickedCard) return;
-console.log(clickedCard);
 clickedCard.classList.add('active-card');
+this._planSelected=clickedCard.dataset.planselected;
+
 
 
 }})
 }
 //To move the toggle section and change the data on the card accordingly
 addHandlerToggle(){
-    this._parentEl.addEventListener('click',function(e){
+    this._parentEl.addEventListener('click',(e)=>{
 if(e.target.classList.contains('option')){
  let selectedOption=e.target.value;
  let arcadeCost=document.querySelector('.arcade-cost');
@@ -30,7 +36,6 @@ if(e.target.classList.contains('option')){
  let proCost=document.querySelector('.pro-cost');
  let description=document.querySelectorAll('.free-duration');
  if(selectedOption=='month'){
-    this._optionSelected="month";
     arcadeCost.innerHTML='';
     arcadeCost.innerHTML="$9/month";
     advancedCost.innerHTML="";
@@ -40,9 +45,9 @@ if(e.target.classList.contains('option')){
     description.forEach((des)=>{
         des.classList.add('hide');
      })
+   this.optionSelectedfun('month');
  }
  if(selectedOption=='year'){
-    this._optionSelected="year";
 arcadeCost.innerHTML='';
 arcadeCost.innerHTML="$90/yr";
 advancedCost.innerHTML="";
@@ -52,12 +57,12 @@ advancedCost.innerHTML="";
     description.forEach((des)=>{
         des.classList.remove('hide');
      })
+     this.optionSelectedfun('year');
  }
 
 }
     })
 }
-
 
 }
 export default new SelectPlanVeiw();

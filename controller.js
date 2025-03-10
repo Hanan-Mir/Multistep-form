@@ -2,6 +2,7 @@ import infoVeiw from "./Veiws/infoVeiw";
 import View from "./Veiws/veiw";
 import selectPlanVeiw from "./Veiws/selectPlanVeiw";
 import addOnVeiw from "./Veiws/addOnVeiw";
+import addon from "./Veiws/addon";
 const loadSelectPlan=function(parentEl){
    
     if(checkDataPresent(infoVeiw._username) && checkMail(infoVeiw._email) && checkDataPresent(infoVeiw._phNumber)){
@@ -35,11 +36,16 @@ const checkMail=function(element){
         return true;
     }
 }
-
+//function to load add-on page
+const loadAddOn=function(parentEl){
+addOnVeiw._render(addOnVeiw._generateMarkup(),parentEl);
+addOnVeiw._activateCurrentSection(addOnVeiw._currentSection)
+}
 let init=function(){
     infoVeiw.addHandlerRender(loadSelectPlan);
     selectPlanVeiw.addHandlerActivateCard();
     selectPlanVeiw.addHandlerToggle();
-    addOnVeiw.addHandlerRenderAddOn();
+    addOnVeiw.addHandlerRenderAddOn(loadAddOn);
+    addon.addHandlerGetData();
 }
 init();

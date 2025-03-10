@@ -20,17 +20,17 @@ _generateMarkup(){
     <p>You have the option of monthly or yearly billing</p>
   </div>
   <div class="card-container">
-<div class="card">
+<div class="card" data-planSelected='arcade'>
   <div class="card-icons">
     <img src="${arcade}" alt="">
   </div>
   <div class="card-info">
-    <h3>Arcade</h3>
+    <h3 class='planname'>Arcade</h3>
     <p class="arcade-cost">$9/mo</p>
     <p class="free-duration hide">2 months free</p>
   </div>
   </div>
-  <div class="card advanced-card">
+  <div class="card advanced-card" data-planSelected='advanced-card'>
     <div class="card-icon">
       <img src="${advanced}" alt="">
     </div>
@@ -40,7 +40,7 @@ _generateMarkup(){
       <p class="free-duration hide">2 months free</p>
     </div>
     </div>
-    <div class="card pro-card">
+    <div class="card pro-card" data-planSelected='pro-card'>
       <div class="card-icon">
         <img src="${pro}" alt="">
       </div>
