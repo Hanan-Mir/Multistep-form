@@ -4,6 +4,8 @@ class SelectPlanVeiw extends View{
 _parentEl=document.querySelector('.right');
 optionSelected='month';
 _planSelected;
+_costEl;
+_planCost;
 //function for option selected
 optionSelectedfun(option){
 this.optionSelected=option;
@@ -21,9 +23,9 @@ this._parentEl.addEventListener('click',(e)=>{
 if(!clickedCard) return;
 clickedCard.classList.add('active-card');
 this._planSelected=clickedCard.dataset.planselected;
-
-
-
+this._costEl=document.querySelector(`.${this._planSelected.replace('-card','-cost')}`);
+this._planCost=this._costEl.innerHTML;
+console.log(this._planCost);
 }})
 }
 //To move the toggle section and change the data on the card accordingly
@@ -46,6 +48,8 @@ if(e.target.classList.contains('option')){
         des.classList.add('hide');
      })
    this.optionSelectedfun('month');
+   this._planCost=this._costEl.innerHTML;
+   console.log(this._planCost)
  }
  if(selectedOption=='year'){
 arcadeCost.innerHTML='';
@@ -58,6 +62,9 @@ advancedCost.innerHTML="";
         des.classList.remove('hide');
      })
      this.optionSelectedfun('year');
+     this._planCost=this._costEl.innerHTML;
+   console.log(this._planCost);
+     
  }
 
 }

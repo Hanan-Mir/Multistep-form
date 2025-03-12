@@ -24,8 +24,8 @@ class AddOnVeiw extends View{
     <h3>Online service</h3>
     <p>Access to multiplayer games</p>
   </div>
-  <div class="cost"><p>+$1/mo</p>
-  <p class="hide">+$10/yr</p>
+  <div class="cost"><p class="online-service">+$1/mo</p>
+  <p class="hide online-service">+$10/yr</p>
   </div>
 </div>
 <div class="addon-description" value='larger-storage'>
@@ -34,8 +34,8 @@ class AddOnVeiw extends View{
    <h3>Larger storage</h3>
     <p>Extra 1TB of cloud save</p>
   </div>
-  <div class="cost"><p>+$2/mo</p>
-    <p class="hide">+$20/yr</p>
+  <div class="cost"><p class='larger-storage'>+$2/mo</p>
+    <p class="hide larger-storage">+$20/yr</p>
   </div>
 </div>
 <div class="addon-description" value='customizable-profile'>
@@ -44,8 +44,8 @@ class AddOnVeiw extends View{
     <h3>Customizable profile</h3>
     <p>Custom theme on your profile</p>
   </div>
-  <div class="cost"><p>+$2/mo</p>
-    <p class="hide">+$20/yr</p>
+  <div class="cost"><p class='customizable-profile'>+$2/mo</p>
+    <p class="hide customizable-profile">+$20/yr</p>
   </div>
 </div>
 
@@ -72,7 +72,7 @@ if(selectPlanVeiw.optionSelected=='year'){
     <p>Access to multiplayer games</p>
   </div>
   <div class="cost">
-  <p>+$10/yr</p>
+  <p class="online-service">+$10/yr</p>
   </div>
 </div>
 <div class="addon-description">
@@ -82,7 +82,7 @@ if(selectPlanVeiw.optionSelected=='year'){
     <p>Extra 1TB of cloud save</p>
   </div>
   <div class="cost">
-    <p>+$20/yr</p>
+    <p class='larger-storage'>+$20/yr</p>
   </div>
 </div>
 <div class="addon-description">
@@ -92,7 +92,7 @@ if(selectPlanVeiw.optionSelected=='year'){
     <p>Custom theme on your profile</p>
   </div>
   <div class="cost">
-    <p>+$20/yr</p>
+    <p class='customizable-profile'>+$20/yr</p>
   </div>
 </div>
 

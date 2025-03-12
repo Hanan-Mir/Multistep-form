@@ -643,7 +643,7 @@ let init = function() {
 };
 init();
 
-},{"./Veiws/infoVeiw":"gp6od","./Veiws/veiw":"fjehN","./Veiws/selectPlanVeiw":"enGlT","./Veiws/addOnVeiw":"2H5aB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./Veiws/addon":"7OOIn"}],"gp6od":[function(require,module,exports,__globalThis) {
+},{"./Veiws/infoVeiw":"gp6od","./Veiws/veiw":"fjehN","./Veiws/selectPlanVeiw":"enGlT","./Veiws/addOnVeiw":"2H5aB","./Veiws/addon":"7OOIn","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gp6od":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _veiw = require("./veiw");
@@ -672,7 +672,7 @@ class Infoview extends (0, _veiwDefault.default) {
     <p>You have the option of monthly or yearly billing</p>
   </div>
   <div class="card-container">
-<div class="card" data-planSelected='arcade'>
+<div class="card" data-planSelected='arcade-card'>
   <div class="card-icons">
     <img src="${0, _iconArcadeSvgDefault.default}" alt="">
   </div>
@@ -682,7 +682,7 @@ class Infoview extends (0, _veiwDefault.default) {
     <p class="free-duration hide">2 months free</p>
   </div>
   </div>
-  <div class="card advanced-card" data-planSelected='advanced-card'>
+  <div class="card" data-planSelected='advanced-card'>
     <div class="card-icon">
       <img src="${0, _iconAdvancedSvgDefault.default}" alt="">
     </div>
@@ -870,6 +870,8 @@ class SelectPlanVeiw extends (0, _veiwDefault.default) {
     _parentEl = document.querySelector('.right');
     optionSelected = 'month';
     _planSelected;
+    _costEl;
+    _planCost;
     //function for option selected
     optionSelectedfun(option) {
         this.optionSelected = option;
@@ -887,6 +889,9 @@ class SelectPlanVeiw extends (0, _veiwDefault.default) {
                 if (!clickedCard) return;
                 clickedCard.classList.add('active-card');
                 this._planSelected = clickedCard.dataset.planselected;
+                this._costEl = document.querySelector(`.${this._planSelected.replace('-card', '-cost')}`);
+                this._planCost = this._costEl.innerHTML;
+                console.log(this._planCost);
             }
         });
     }
@@ -910,6 +915,8 @@ class SelectPlanVeiw extends (0, _veiwDefault.default) {
                         des.classList.add('hide');
                     });
                     this.optionSelectedfun('month');
+                    this._planCost = this._costEl.innerHTML;
+                    console.log(this._planCost);
                 }
                 if (selectedOption == 'year') {
                     arcadeCost.innerHTML = '';
@@ -922,6 +929,8 @@ class SelectPlanVeiw extends (0, _veiwDefault.default) {
                         des.classList.remove('hide');
                     });
                     this.optionSelectedfun('year');
+                    this._planCost = this._costEl.innerHTML;
+                    console.log(this._planCost);
                 }
             }
         });
@@ -960,8 +969,8 @@ class AddOnVeiw extends (0, _veiwDefault.default) {
     <h3>Online service</h3>
     <p>Access to multiplayer games</p>
   </div>
-  <div class="cost"><p>+$1/mo</p>
-  <p class="hide">+$10/yr</p>
+  <div class="cost"><p class="online-service">+$1/mo</p>
+  <p class="hide online-service">+$10/yr</p>
   </div>
 </div>
 <div class="addon-description" value='larger-storage'>
@@ -970,8 +979,8 @@ class AddOnVeiw extends (0, _veiwDefault.default) {
    <h3>Larger storage</h3>
     <p>Extra 1TB of cloud save</p>
   </div>
-  <div class="cost"><p>+$2/mo</p>
-    <p class="hide">+$20/yr</p>
+  <div class="cost"><p class='larger-storage'>+$2/mo</p>
+    <p class="hide larger-storage">+$20/yr</p>
   </div>
 </div>
 <div class="addon-description" value='customizable-profile'>
@@ -980,8 +989,8 @@ class AddOnVeiw extends (0, _veiwDefault.default) {
     <h3>Customizable profile</h3>
     <p>Custom theme on your profile</p>
   </div>
-  <div class="cost"><p>+$2/mo</p>
-    <p class="hide">+$20/yr</p>
+  <div class="cost"><p class='customizable-profile'>+$2/mo</p>
+    <p class="hide customizable-profile">+$20/yr</p>
   </div>
 </div>
 
@@ -1006,7 +1015,7 @@ class AddOnVeiw extends (0, _veiwDefault.default) {
     <p>Access to multiplayer games</p>
   </div>
   <div class="cost">
-  <p>+$10/yr</p>
+  <p class="online-service">+$10/yr</p>
   </div>
 </div>
 <div class="addon-description">
@@ -1016,7 +1025,7 @@ class AddOnVeiw extends (0, _veiwDefault.default) {
     <p>Extra 1TB of cloud save</p>
   </div>
   <div class="cost">
-    <p>+$20/yr</p>
+    <p class='larger-storage'>+$20/yr</p>
   </div>
 </div>
 <div class="addon-description">
@@ -1026,7 +1035,7 @@ class AddOnVeiw extends (0, _veiwDefault.default) {
     <p>Custom theme on your profile</p>
   </div>
   <div class="cost">
-    <p>+$20/yr</p>
+    <p class='customizable-profile'>+$20/yr</p>
   </div>
 </div>
 
@@ -1069,6 +1078,7 @@ var _veiw = require("./veiw");
 var _veiwDefault = parcelHelpers.interopDefault(_veiw);
 class Addon extends (0, _veiwDefault.default) {
     _addonSelected = [];
+    _addOnMap = new Map();
     addHandlerGetData() {
         (0, _selectPlanVeiwDefault.default)._parentEl.addEventListener('click', (e)=>{
             if (e.target.closest('.add-on')) {
@@ -1077,10 +1087,17 @@ class Addon extends (0, _veiwDefault.default) {
                     if (addon.checked && !this._addonSelected.includes(addon.value)) this._addonSelected.push(addon.value);
                     if (!addon.checked && this._addonSelected.includes(addon.value)) {
                         const index = this._addonSelected.indexOf(addon.value);
+                        console.log(this._addonSelected[index]);
+                        this._addOnMap.delete(this._addonSelected[index]);
                         this._addonSelected.splice(index, 1);
                     }
                 });
                 console.log(this._addonSelected);
+                for(let i = 0; i < this._addonSelected.length; i++){
+                    let addonEl = document.querySelector(`.${this._addonSelected[i]}`);
+                    this._addOnMap.set(`${this._addonSelected[i]}`, `${addonEl.innerHTML}`);
+                }
+                console.log(this._addOnMap);
             }
         });
     }
