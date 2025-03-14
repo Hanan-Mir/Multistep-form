@@ -126,5 +126,12 @@ if(addon.checked){
 }
   })
 }
+addHandlerRenderSelectPlan(handler){
+  selectPlanVeiw._parentEl.addEventListener('click',(e)=>{
+    if(e.target.classList.contains('selectPlan')){
+      handler(infoVeiw._parentEl);
+    }
+  })
+}
 }
 export default new AddOnVeiw();

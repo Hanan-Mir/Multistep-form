@@ -323,9 +323,9 @@ form{
     padding: 10px 18px;
 }
  .plan .plan-name{
-color: black;
-font-weight: 500;
-font-size: 1.2rem;
+color:black;
+font-weight: bold;
+font-size: 1.3rem;
 margin-bottom: 5px;
 }
 .plan .change{
