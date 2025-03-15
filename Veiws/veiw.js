@@ -5,7 +5,9 @@ export default class View{
     //function to render the html form
     _render=function(data,parentEl){
     this._data=data;
-     let markup=this._generateMarkup();
+    console.log(this._data);
+     let markup=this._data;
+     console.log(markup);
     this.clear(parentEl);
    parentEl.insertAdjacentHTML('afterbegin',markup);
     }

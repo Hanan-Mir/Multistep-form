@@ -641,6 +641,10 @@ const loadSummary = function(parentEl) {
     (0, _summaryViewDefault.default)._render((0, _summaryViewDefault.default)._generateMarkup(), parentEl);
     (0, _summaryViewDefault.default)._activateCurrentSection((0, _summaryViewDefault.default)._currentSection);
 };
+//load sucess message
+const loadSucessMessage = function(parentEl) {
+    (0, _summaryViewDefault.default)._render((0, _summaryViewDefault.default)._generateSucessMarkUp(), parentEl);
+};
 let init = function() {
     (0, _infoVeiwDefault.default).addHandlerRender(loadSelectPlan);
     (0, _selectPlanVeiwDefault.default).addHandlerActivateCard();
@@ -650,10 +654,13 @@ let init = function() {
     (0, _summaryViewDefault.default).addHandlerRender(loadSummary);
     (0, _addOnVeiwDefault.default).addHandlerRenderSelectPlan(loadSelectPlan);
     (0, _summaryViewDefault.default).addHandlerRenderAddOn(loadAddOn);
+    (0, _summaryViewDefault.default).insertAddonsSelected();
+    (0, _summaryViewDefault.default).renderSelectPlanOnClick(loadSelectPlan);
+    (0, _summaryViewDefault.default).renderSucessMessage(loadSucessMessage);
 };
 init();
 
-},{"./Veiws/infoVeiw":"gp6od","./Veiws/veiw":"fjehN","./Veiws/selectPlanVeiw":"enGlT","./Veiws/addOnVeiw":"2H5aB","./Veiws/addon":"7OOIn","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./Veiws/summaryView":"goTV8"}],"gp6od":[function(require,module,exports,__globalThis) {
+},{"./Veiws/infoVeiw":"gp6od","./Veiws/veiw":"fjehN","./Veiws/selectPlanVeiw":"enGlT","./Veiws/addOnVeiw":"2H5aB","./Veiws/addon":"7OOIn","./Veiws/summaryView":"goTV8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gp6od":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _veiw = require("./veiw");
@@ -780,7 +787,9 @@ class View {
     //function to render the html form
     _render = function(data, parentEl) {
         this._data = data;
-        let markup = this._generateMarkup();
+        console.log(this._data);
+        let markup = this._data;
+        console.log(markup);
         this.clear(parentEl);
         parentEl.insertAdjacentHTML('afterbegin', markup);
     };
@@ -1132,8 +1141,11 @@ var _addon = require("./addon");
 var _addonDefault = parcelHelpers.interopDefault(_addon);
 var _selectPlanVeiw = require("./selectPlanVeiw");
 var _selectPlanVeiwDefault = parcelHelpers.interopDefault(_selectPlanVeiw);
+var _iconThankYouSvg = require("url:../assets/images/icon-thank-you.svg");
+var _iconThankYouSvgDefault = parcelHelpers.interopDefault(_iconThankYouSvg);
 class Summary extends (0, _veiwDefault.default) {
     _currentSection = document.querySelector('.summary-section');
+    _load = true;
     _getStringFormat(plan) {
         return plan.charAt(0).toUpperCase() + plan.slice(1);
     }
@@ -1153,23 +1165,13 @@ class Summary extends (0, _veiwDefault.default) {
 <p class="price pyearly hide">$90/yr</p>
 </div>
 <div class="break"></div>
-<div class="service-type">
-  <p class="service-name">Online-service</p>
-  <p class="service-cost smonthly">+$2/mo</p>
-  <p class="service-cost syearly hide">+$10/mo</p>
-  
-</div>
-<div class="storage-type">
-  <p class="storage-name">Larger storage</p>
-  <p class="storage-cost smonthly">+$2/mo</p>
-  <p class="storage-cost syearly hide">+$20/yr</p>
-</div>
+
   </div>
   
   </section>
   <div class="total-month">
     <p class="totalM">Total(per ${(0, _selectPlanVeiwDefault.default).optionSelected})</p>
-    <p class="totalM-cost tmonthly ">+$12/mo</p>
+    <p class="totalM-cost tmonthly tcost ">+$12/mo</p>
     <p class="totalM-cost tyearly hide">+$120/yr</p>
   </div>
   <div class="back-btn">
@@ -1180,6 +1182,15 @@ class Summary extends (0, _veiwDefault.default) {
 </div>
   `;
     }
+    _generateSucessMarkUp() {
+        return `<section class="sucess-container">
+  <div class="sucess">
+<img src="${0, _iconThankYouSvgDefault.default}" alt="">
+<h1>Thank you!</h1>
+<p class="sucess-msg">Thanks for confirming your subscription!We hope you have fun using our platform.If you ever need support,please feel free to email us at support@hanan.com.</p>
+</div>
+</section>`;
+    }
     addHandlerRender(handler) {
         (0, _selectPlanVeiwDefault.default)._parentEl.addEventListener('click', (e)=>{
             if (e.target.classList.contains('summary')) handler((0, _infoVeiwDefault.default)._parentEl);
@@ -1187,12 +1198,69 @@ class Summary extends (0, _veiwDefault.default) {
     }
     addHandlerRenderAddOn(handler) {
         (0, _selectPlanVeiwDefault.default)._parentEl.addEventListener('click', (e)=>{
-            if (e.target.classList.contains('addon')) handler((0, _infoVeiwDefault.default)._parentEl);
+            if (e.target.classList.contains('addon')) {
+                handler((0, _infoVeiwDefault.default)._parentEl);
+                this._load = true;
+            }
+        });
+    }
+    //function to insert html in the table based on the adddons selected
+    insertAddonsSelected() {
+        // window.addEventListener('load',(e)=>{
+        //   if(document.querySelector('.summary-container')){
+        //     alert("page loaded sucessfully");
+        //   }
+        // })
+        (0, _selectPlanVeiwDefault.default)._parentEl.addEventListener('click', (e)=>{
+            if (document.querySelector('.finishing-up') && this._load) {
+                let totalSum = this.getNumber((0, _selectPlanVeiwDefault.default)._planCost, 1);
+                let container = document.querySelector('.summary-container');
+                let total = document.querySelector('.tcost');
+                // total.innerHTML=this.getNumber(selectPlanVeiw._planCost);
+                console.log(container);
+                if (this._load) (0, _addonDefault.default)._addOnMap.forEach((value, key)=>{
+                    const row = document.createElement('div');
+                    totalSum += this.getNumber(value, 2);
+                    row.classList.add('storage-type');
+                    row.innerHTML = `<p class="service-name">${key}</p>
+  <p class="service-cost smonthly">${value}</p>`;
+                    container.appendChild(row);
+                });
+                this._load = false;
+                if ((0, _selectPlanVeiwDefault.default).optionSelected == 'month') total.innerHTML = `+$${totalSum}/mo`;
+                else total.innerHTML = `+$${totalSum}/yr`;
+            }
+        });
+    }
+    getNumber(str, startIndex) {
+        let endIndex = str.indexOf('/');
+        let amount = +str.slice(startIndex, endIndex);
+        return amount;
+    }
+    //load select plan
+    renderSelectPlanOnClick(handler) {
+        (0, _selectPlanVeiwDefault.default)._parentEl.addEventListener('click', (e)=>{
+            if (e.target.classList.contains('change')) {
+                handler((0, _infoVeiwDefault.default)._parentEl);
+                this._load = true;
+            }
+        });
+    }
+    //render sucess message
+    renderSucessMessage(handler) {
+        (0, _selectPlanVeiwDefault.default)._parentEl.addEventListener('click', (e)=>{
+            if (e.target.classList.contains('btn-confirm')) {
+                console.log('Hello');
+                handler((0, _selectPlanVeiwDefault.default)._parentEl);
+            }
         });
     }
 }
 exports.default = new Summary();
 
-},{"./veiw":"fjehN","./addOnVeiw":"2H5aB","./infoVeiw":"gp6od","./addon":"7OOIn","./selectPlanVeiw":"enGlT","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["9GzPh","3rStQ"], "3rStQ", "parcelRequire94c2")
+},{"./veiw":"fjehN","./addOnVeiw":"2H5aB","./infoVeiw":"gp6od","./addon":"7OOIn","./selectPlanVeiw":"enGlT","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","url:../assets/images/icon-thank-you.svg":"7kkXk"}],"7kkXk":[function(require,module,exports,__globalThis) {
+module.exports = require("859a7b69c3eaaecb").getBundleURL('kIO2i') + "icon-thank-you.1ebd1db2.svg" + "?" + Date.now();
+
+},{"859a7b69c3eaaecb":"lgJ39"}]},["9GzPh","3rStQ"], "3rStQ", "parcelRequire94c2")
 
 //# sourceMappingURL=index.7604f81c.js.map

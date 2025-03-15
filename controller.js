@@ -48,6 +48,10 @@ const loadSummary=function(parentEl){
     summaryView._activateCurrentSection(summaryView._currentSection);
 
 }
+//load sucess message
+const loadSucessMessage=function(parentEl){
+    summaryView._render(summaryView._generateSucessMarkUp(),parentEl);
+}
 let init=function(){
     infoVeiw.addHandlerRender(loadSelectPlan);
     selectPlanVeiw.addHandlerActivateCard();
@@ -57,5 +61,8 @@ let init=function(){
     summaryView.addHandlerRender(loadSummary);
     addOnVeiw.addHandlerRenderSelectPlan(loadSelectPlan);
     summaryView.addHandlerRenderAddOn(loadAddOn);
+    summaryView.insertAddonsSelected();
+    summaryView.renderSelectPlanOnClick(loadSelectPlan);
+    summaryView.renderSucessMessage(loadSucessMessage);
 }
 init();
