@@ -5,7 +5,7 @@ import addon from "./addon";
 import selectPlanVeiw from "./selectPlanVeiw";
 import thankYou from 'url:../assets/images/icon-thank-you.svg'
 class Summary extends View{
-    _currentSection=document.querySelector('.summary-section');
+    _currentSection=document.querySelectorAll('.summary-section');
     _load=true;
     _getStringFormat(plan){
         return plan.charAt(0).toUpperCase()+plan.slice(1);

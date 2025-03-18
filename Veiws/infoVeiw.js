@@ -4,7 +4,7 @@ import advanced from 'url:../assets/images/icon-advanced.svg';
 import pro from 'url:../assets/images/icon-pro.svg';
 class Infoview extends View{
 _parentEl=document.querySelector('#container');
-_currentSection=document.querySelector('.plan-section');
+_currentSection=document.querySelectorAll('.plan-section');
 _previousSectionBtn=document.querySelector('.infoSection');
 _username=document.querySelector('#username');
 _email=document.querySelector('#email');

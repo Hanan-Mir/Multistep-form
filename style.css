@@ -155,7 +155,7 @@ form{
 .button{
     position: absolute;
     right: 10%;
-    bottom: 10%;
+    bottom: 8%;
 }
 .button button{
     padding: 14px 15px;
@@ -226,7 +226,7 @@ form{
 }
 .back-btn{
     position: absolute;
-    bottom: 12%;
+    bottom: 10%;
     left: 35%;
 }
 .back-btn button{
@@ -416,9 +416,194 @@ color: var(--neutral-cool-grey);
 .message{
     position: relative;
     width: 100%;
-    left: 68%;
+    left: 0%;
     margin-top: 10px;
     margin-bottom: 5px;
     color: var(--primary-strawberry-red);
     font-weight: 600;
+}
+.image1{
+    display: block;
+}
+.image2{
+    display:none;
+}
+.steps-container-mobile{
+    display: none;
+}
+.total-month .totalM{
+    color:var(--neutral-cool-grey) ;
+}
+/* media query for screen size 375px */
+@media only screen and (max-width:600px){
+*{
+    max-width: 100%;
+
+}
+    form{
+    width:100%;
+    background-color: var(--neutral-mangolia);
+
+}
+body{
+    height: 90vh;
+    overflow: hidden;
+    
+}
+.main{
+    height: 90%;
+    width: 100%;
+}
+.image-container{
+    width: 100%;
+    height: 100%;
+    top: -30%;
+}
+.image1{
+    display: none;
+}
+.image2{
+    display:block;
+    width:100% ;
+    height:40%;
+}
+.image-container{
+    z-index: 0;
+}
+.step-name,.step-number{
+    display: none;
+}
+.right{
+    z-index: 2;
+}
+.right{
+background-color: var(--neutral-white);
+width:84%;
+height: 100%;
+position: absolute;
+left: 10%;
+border-radius: 10px;
+top: -7%;
+}
+.textbox-style{
+    width: 80%;
+    z-index: 10;
+
+}
+.input-style,.heading{
+    margin-left: 20px;
+}
+.button{
+    width: 100%;
+    height: 100%;
+}
+.button button{
+  position: absolute;
+  bottom:-70%;
+  right: -10%;
+  border-radius: 0;  
+    
+}
+.desktop{
+    display: none;
+}
+.steps-container-mobile{
+    display: flex;
+    flex-direction: row;
+    z-index: 2;
+    width: 100%;
+    position: absolute;
+    top: -20%;
+    left: 18%;
+}
+.steps-container-mobile p{
+    color: black;
+    margin-left: 10px;
+
+}
+.back-btn{
+    height: 100%;
+    width:100% ;
+}
+.back-btn button{
+    position: absolute; 
+    bottom: -70%;
+    left: -40%;
+}
+.card-container{
+    display: flex;
+    flex-direction: column;
+}
+.card{
+    display: flex;
+    flex-direction: row;
+    width: 88%;
+    height: 80px;
+    align-items: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    z-index: 3;
+}
+.card-info{
+    margin: 0 0 0 5%;
+}
+.toggle-section{
+    width:80%;
+    margin-left:10% ;
+    z-index: 3;
+}
+.card-info .arcade-cost{
+    margin: 0;
+}
+.card-info .free-duration{
+    margin: 0 0 5px 0;
+}
+.card-info .advanced-cost{
+    margin: 0;
+}
+.card-info .pro-cost{
+    margin: 0;
+}
+.addon-description{
+    width:80%;
+    border-radius: 10px;
+    margin-left: 5%;
+    z-index: 5;
+}
+.addon-description input{
+    z-index: 5;
+}
+.summary-container{
+    width:90% ;
+    margin-left: 5%;
+}
+.total-month{
+    width: 90%;
+    margin-top: 5%;
+}
+.total-month .totalM{
+    color:var(--neutral-cool-grey) ;
+}
+.sucess{
+    width:80% ;
+}
+.sucess img{
+    margin-left: 20%;
+}
+.sucess h1{
+    margin-left: 20%;
+}
+.sucess p{
+    margin-left: 30%;
+    font-size: 1.2rem;
+}
+.steps-container-mobile .mobileStep{
+padding:12px;
+border: 2px solid white;
+color:black;
+}
+.active{
+    background-color: var(--primary-light-blue);
+
+}
 }

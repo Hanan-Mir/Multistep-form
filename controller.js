@@ -64,5 +64,6 @@ let init=function(){
     summaryView.insertAddonsSelected();
     summaryView.renderSelectPlanOnClick(loadSelectPlan);
     summaryView.renderSucessMessage(loadSucessMessage);
+    addOnVeiw.onClickCheckBox();
 }
 init();

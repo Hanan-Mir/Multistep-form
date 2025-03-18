@@ -657,6 +657,7 @@ let init = function() {
     (0, _summaryViewDefault.default).insertAddonsSelected();
     (0, _summaryViewDefault.default).renderSelectPlanOnClick(loadSelectPlan);
     (0, _summaryViewDefault.default).renderSucessMessage(loadSucessMessage);
+    (0, _addOnVeiwDefault.default).onClickCheckBox();
 };
 init();
 
@@ -673,7 +674,7 @@ var _iconProSvg = require("url:../assets/images/icon-pro.svg");
 var _iconProSvgDefault = parcelHelpers.interopDefault(_iconProSvg);
 class Infoview extends (0, _veiwDefault.default) {
     _parentEl = document.querySelector('#container');
-    _currentSection = document.querySelector('.plan-section');
+    _currentSection = document.querySelectorAll('.plan-section');
     _previousSectionBtn = document.querySelector('.infoSection');
     _username = document.querySelector('#username');
     _email = document.querySelector('#email');
@@ -787,9 +788,7 @@ class View {
     //function to render the html form
     _render = function(data, parentEl) {
         this._data = data;
-        console.log(this._data);
         let markup = this._data;
-        console.log(markup);
         this.clear(parentEl);
         parentEl.insertAdjacentHTML('afterbegin', markup);
     };
@@ -801,7 +800,10 @@ class View {
         this._listOfSections.forEach((section)=>{
             section.classList.remove('active');
         });
-        curSection.classList.add('active');
+        curSection.forEach((section)=>{
+            section.classList.add('active');
+            section.style.color = "black";
+        });
     };
 }
 exports.default = View;
@@ -969,7 +971,7 @@ var _infoVeiwDefault = parcelHelpers.interopDefault(_infoVeiw);
 class AddOnVeiw extends (0, _veiwDefault.default) {
     planSelected;
     planCost;
-    _currentSection = document.querySelector('.addOn-section');
+    _currentSection = document.querySelectorAll('.addOn-section');
     _selectedAddOn = document.querySelectorAll('.addOn');
     setPlanData(planSelected, planCost) {
         this.planSelected = planSelected;
@@ -1086,6 +1088,19 @@ class AddOnVeiw extends (0, _veiwDefault.default) {
             if (e.target.classList.contains('selectPlan')) handler((0, _infoVeiwDefault.default)._parentEl);
         });
     }
+    onClickCheckBox() {
+        (0, _selectPlanVeiwDefault.default)._parentEl.addEventListener('click', (e)=>{
+            if (e.target.classList.contains('selectPlan')) {
+                let container = document.querySelectorAll('.addon-description');
+                container.forEach((el)=>{
+                    console.log(el);
+                    el.addEventListener('click', ()=>{
+                        alert('Clicked');
+                    });
+                });
+            }
+        });
+    }
 }
 exports.default = new AddOnVeiw();
 
@@ -1144,7 +1159,7 @@ var _selectPlanVeiwDefault = parcelHelpers.interopDefault(_selectPlanVeiw);
 var _iconThankYouSvg = require("url:../assets/images/icon-thank-you.svg");
 var _iconThankYouSvgDefault = parcelHelpers.interopDefault(_iconThankYouSvg);
 class Summary extends (0, _veiwDefault.default) {
-    _currentSection = document.querySelector('.summary-section');
+    _currentSection = document.querySelectorAll('.summary-section');
     _load = true;
     _getStringFormat(plan) {
         return plan.charAt(0).toUpperCase() + plan.slice(1);
@@ -1258,7 +1273,7 @@ class Summary extends (0, _veiwDefault.default) {
 }
 exports.default = new Summary();
 
-},{"./veiw":"fjehN","./addOnVeiw":"2H5aB","./infoVeiw":"gp6od","./addon":"7OOIn","./selectPlanVeiw":"enGlT","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","url:../assets/images/icon-thank-you.svg":"7kkXk"}],"7kkXk":[function(require,module,exports,__globalThis) {
+},{"./veiw":"fjehN","./addOnVeiw":"2H5aB","./infoVeiw":"gp6od","./addon":"7OOIn","./selectPlanVeiw":"enGlT","url:../assets/images/icon-thank-you.svg":"7kkXk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7kkXk":[function(require,module,exports,__globalThis) {
 module.exports = require("859a7b69c3eaaecb").getBundleURL('kIO2i') + "icon-thank-you.1ebd1db2.svg" + "?" + Date.now();
 
 },{"859a7b69c3eaaecb":"lgJ39"}]},["9GzPh","3rStQ"], "3rStQ", "parcelRequire94c2")

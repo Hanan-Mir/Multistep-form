@@ -4,7 +4,7 @@ import infoVeiw from "./infoVeiw";
 class AddOnVeiw extends View{
   planSelected;
   planCost;
-  _currentSection=document.querySelector('.addOn-section');
+  _currentSection=document.querySelectorAll('.addOn-section');
   _selectedAddOn=document.querySelectorAll('.addOn');
   setPlanData(planSelected,planCost){
     this.planSelected=planSelected;
@@ -130,6 +130,20 @@ addHandlerRenderSelectPlan(handler){
   selectPlanVeiw._parentEl.addEventListener('click',(e)=>{
     if(e.target.classList.contains('selectPlan')){
       handler(infoVeiw._parentEl);
+    }
+  })
+}
+onClickCheckBox(){
+  selectPlanVeiw._parentEl.addEventListener('click',(e)=>{
+    if(e.target.classList.contains('selectPlan')){
+      let container=document.querySelectorAll('.addon-description');
+      container.forEach((el)=>{
+        console.log(el);
+        el.addEventListener('click',()=>{
+          alert('Clicked');
+        })
+        
+      })
     }
   })
 }
